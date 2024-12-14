@@ -4,6 +4,7 @@
 # LEVEL: Easy, Medium
 # AUTHOR: Pie God
 # MODIFIED BY: KeatonGamer
+# VERSION: 1.1.0
 # 
 # DESCRIPTION:
 # Want to add a talk system to your game with a custom HUD and everything? 
@@ -22,9 +23,15 @@ module PGS
   #--------------------------------------------------------------------------
   # This is where the Actor ID of whoever you selected to talk to is stored.
   #==========================================================================
-  CommonEvent  = true  # Toggles the Common Event.
-  TalkEvent    = 101   # Calls the Common Event if CommonEvent is set to true.
-  TalkVariable = 18    # Don't leave this at 0 or the script will explode.
+  CommonEvent  = true       # Toggles the Common Event.
+  TalkEvent    = 101        # Calls the Common Event if CommonEvent is set to 
+                            # true.
+  
+  TalkVariable = 18         # Don't leave this at 0 or the script will 
+                            # explode.
+                            
+  TalkBG       = "HUD_Talk" # The Talk system's background image. Put it in
+                            # Graphics/System.
 end
 
 class Window_TalkCommand < Window_Command
@@ -40,7 +47,7 @@ class Window_TalkCommand < Window_Command
     super(146, 40)
 
     # Clears windowskin
-    self.windowskin = build_windowskin
+    self.windowskin = build_windowskin 
 
     # Draw Background
     create_background
@@ -61,7 +68,7 @@ class Window_TalkCommand < Window_Command
   def create_background
     # Builds background sprite
     @background_sprite = Sprite.new()
-    @background_sprite.bitmap = Cache.system("HUD_Talk")
+    @background_sprite.bitmap = Cache.system(PGS::TalkBG)
 
     # Positioning
     @background_sprite.x = self.x
